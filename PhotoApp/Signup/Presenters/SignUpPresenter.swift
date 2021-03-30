@@ -23,22 +23,27 @@ class SignUpPresenter: SignUpPresenterProtocol {
     
     func proccessUserSignUp(fromModel: SignUpFromModel) {
         if !formModelValidator.isFirstNameValid(firstName: fromModel.firstName) {
+            delegate?.errorHandler(error: SignUpErrors.invalidFirstName)
             return
         }
         
         if !formModelValidator.isLastNameValid(lastName: fromModel.lastName) {
+            delegate?.errorHandler(error: SignUpErrors.invalidLastName)
             return
         }
         
         if !formModelValidator.isEmailValid(email: fromModel.email){
+            delegate?.errorHandler(error: SignUpErrors.invalidEmail)
             return
         }
         
         if !formModelValidator.isPasswordValid(password: fromModel.password) {
+            delegate?.errorHandler(error: SignUpErrors.invalidPassword)
             return
         }
         
         if !formModelValidator.passwordsMatch(password: fromModel.password, repeatPassword: fromModel.repeatPassowrd) {
+            delegate?.errorHandler(error: SignUpErrors.passwordsDoNotMatch)
             return
         }
         

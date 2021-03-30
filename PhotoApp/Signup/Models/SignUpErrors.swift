@@ -11,12 +11,23 @@ enum SignUpErrors: LocalizedError, Equatable {
     case responseModelParsingError
     case invalidRequestURLStringError
     case failedRequest(description: String)
+    case invalidFirstName
+    case invalidLastName
+    case invalidEmail
+    case invalidPassword
+    case passwordsDoNotMatch
     
     var errorDescription: String? {
         switch self {
         case .failedRequest(let description):
             return description
-        case .responseModelParsingError, .invalidRequestURLStringError:
+        case .responseModelParsingError,
+             .invalidRequestURLStringError,
+             .invalidFirstName,
+             .invalidLastName,
+             .invalidEmail,
+             .invalidPassword,
+             .passwordsDoNotMatch:
             return""
         }
     }
